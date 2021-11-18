@@ -7,6 +7,14 @@ import "./assets/font/iconfont.css";
 //引入全局样式表
 import "./assets/css/global.css";
 import TreeTable from "vue-table-with-tree-grid";
+//导入富文本编辑器
+import VueQuillEditor from "vue-quill-editor";
+// 导入富文本编辑器对应的样式
+import "quill/dist/quill.core.css"; // import styles
+import "quill/dist/quill.snow.css"; // for snow theme
+import "quill/dist/quill.bubble.css"; // for bubble theme
+
+import * as echarts from "echarts";
 
 // 引入axios包
 import axios from "axios";
@@ -27,10 +35,13 @@ Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 Vue.component("tree-table", TreeTable);
+//将富文本编辑器注册全局组件
+Vue.use(VueQuillEditor);
+
+Vue.prototype.$echarts = echarts;
 
 Vue.filter("dataFormat", function(originVal) {
     const dt = new Date(originVal);
-
     const y = dt.getFullYear();
     const m = (dt.getMonth() + 1 + "").padStart(2, "0");
     const d = (dt.getDate() + "").padStart(2, "0");

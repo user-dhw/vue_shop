@@ -119,7 +119,6 @@ export default {
             this.$router.push('/goods/add')
         }
     },
-
 }
 </script>
 
