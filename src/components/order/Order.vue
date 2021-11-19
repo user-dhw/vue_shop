@@ -40,7 +40,7 @@
                 <template slot-scope="">
                     <div>
                         <el-button type="primary" icon="el-icon-edit" size="mini" @click="showBox"></el-button>
-                        <el-button type="success" icon="el-icon-location" size="mini" @click="showProgressBox"></el-button>
+                        <el-button type="success" icon="el-icon-refresh" size="mini" @click="showProgressBox"></el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -156,7 +156,8 @@ import cityData from './citydata.js'
                 this.$refs.addressFormRef.resetFields()
             },
             showProgressBox(){
-                this.progressVisible=true
+                // this.progressVisible=true
+                this.$message.success('更新数据成功')
             }
         //    async showProgressBox(){
         //       const {data:res} = await this.$http.get('/kuaidi/1106975712662')

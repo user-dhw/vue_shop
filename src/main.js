@@ -14,7 +14,12 @@ import "quill/dist/quill.core.css"; // import styles
 import "quill/dist/quill.snow.css"; // for snow theme
 import "quill/dist/quill.bubble.css"; // for bubble theme
 
+//// 导入echarts包
 import * as echarts from "echarts";
+
+//导入NProgress包对应的js和css
+import nProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 // 引入axios包
 import axios from "axios";
@@ -22,13 +27,19 @@ import axios from "axios";
 //配置请求根路径
 axios.defaults.baseURL = "http://127.0.0.1:8888/api/private/v1/";
 
+//在request拦截器中展示进度条
 //通过axios拦截器添加token验证
 axios.interceptors.request.use((config) => {
+    nProgress.start();
     // console.log(config);
     config.headers.Authorization = window.sessionStorage.getItem("token");
     return config;
 });
-
+//在response拦截器中隐藏进度条
+axios.interceptors.response.use((config) => {
+    nProgress.done();
+    return config;
+});
 // 挂载到vue原型上
 Vue.prototype.$http = axios;
 
