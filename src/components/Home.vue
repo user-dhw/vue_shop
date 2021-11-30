@@ -71,6 +71,7 @@ export default {
   },
     name:'Home',
     methods: {
+      //退出按钮
       logout(){
         window.sessionStorage.clear()
         this.$router.push('/login')
@@ -84,8 +85,7 @@ export default {
       },
       //点击按钮切换菜单的折叠
       toggleCollapse(){
-      this.isCollapse=!this.isCollapse
-        
+      this.isCollapse=!this.isCollapse    
       },
       //保存连接的激活状态
       saveNavState(activePath){

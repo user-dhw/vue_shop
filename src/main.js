@@ -24,8 +24,9 @@ import "nprogress/nprogress.css";
 // 引入axios包
 import axios from "axios";
 // import { config } from "vue/types/umd";
-//配置请求根路径
+//配置请求根路径 端口号为本地调用，后端通过nginx代理配置访问ip即可
 axios.defaults.baseURL = "http://127.0.0.1:8888/api/private/v1/";
+// axios.defaults.baseURL = "http://39.107.101.71/api/private/v1/";
 
 //在request拦截器中展示进度条
 //通过axios拦截器添加token验证

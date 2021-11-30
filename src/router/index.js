@@ -16,6 +16,8 @@ import Report from "../components/report/Report.vue";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+    // mode: "history",
+    // base: "/admin/",
     routes: [
         { path: "/", redirect: "/login" },
         { path: "/login", component: Login },
@@ -44,7 +46,6 @@ router.beforeEach((to, from, next) => {
     //from从哪个路径跳转过来
     //next 是一个函数,表示放行
     // next() 放行  next('/login')强制跳转路径
-
     if (to.path === "/login") return next();
     // 获取token
     const tokenStr = window.sessionStorage.getItem("token");

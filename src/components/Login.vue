@@ -37,10 +37,10 @@ export default {
       },
       loginFormRules:{
         username:[
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { required: true, message: '请输入账号', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }],
         password:[
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }],
       }
     }
@@ -56,6 +56,7 @@ export default {
         const {data:res}= await this.$http.post('login',this.loginForm)
         if(res.meta.status!==200)return this.$message.error('登陆失败')
         this.$message.success('登陆成功');
+        // 存储token信息
         window.sessionStorage.setItem('token',res.data.token)
         this.$router.push('/home')
       })
