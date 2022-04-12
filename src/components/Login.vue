@@ -3,25 +3,24 @@
     <div class="login_box">
       <!-- //头像区 -->
       <div class="avatar_box">
-        <img src="../assets/logo.jpg" alt="">
+        <img src="../assets/logo.jpg" alt="" />
       </div>
       <!-- //登陆表单区 -->
-    <el-form ref="loginFromRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
-      <!-- 用户名 -->
-        <el-form-item prop="username" >
+      <el-form ref="loginFromRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
+        <!-- 用户名 -->
+        <el-form-item prop="username">
           <el-input v-model="loginForm.username" prefix-icon="iconfont icon-zhanghao"></el-input>
-
         </el-form-item>
-      <!-- 密码 -->
-         <el-form-item prop="password" >
-            <el-input v-model="loginForm.password" prefix-icon="iconfont icon-mima" type="password"></el-input>
-          </el-form-item>
-          <!-- 按钮 -->
-          <el-form-item class="btns">
-            <el-button type="primary" @click="login">登录</el-button>
-             <el-button type="info" @click="resetloginForm">重置</el-button>
-          </el-form-item>
-    </el-form>
+        <!-- 密码 -->
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password" prefix-icon="iconfont icon-mima" type="password"></el-input>
+        </el-form-item>
+        <!-- 按钮 -->
+        <el-form-item class="btns">
+          <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="info" @click="resetloginForm">重置</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -31,33 +30,33 @@ export default {
   data() {
     return {
       //登陆表单的数据绑定对象
-      loginForm:{ 
-      username:'admin',
-      password:'123456'
+      loginForm: {
+        username: 'admin',
+        password: '123456'
       },
-      loginFormRules:{
-        username:[
+      loginFormRules: {
+        username: [
           { required: true, message: '请输入账号', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }],
-        password:[
+        password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }],
       }
     }
   },
   methods: {
-    resetloginForm(){
-   this.$refs.loginFromRef.resetFields()
+    resetloginForm() {
+      this.$refs.loginFromRef.resetFields()
     },
-    login(){
+    login() {
       //对表单进行验证validate
-      this.$refs.loginFromRef.validate(async valid =>{
-        if(!valid) return alert('请输入账号和密码')
-        const {data:res}= await this.$http.post('login',this.loginForm)
-        if(res.meta.status!==200)return this.$message.error('登陆失败')
+      this.$refs.loginFromRef.validate(async valid => {
+        if (!valid) return alert('请输入账号和密码')
+        const { data: res } = await this.$http.post('login', this.loginForm)
+        if (res.meta.status !== 200) return this.$message.error('登陆失败')
         this.$message.success('登陆成功');
         // 存储token信息
-        window.sessionStorage.setItem('token',res.data.token)
+        window.sessionStorage.setItem('token', res.data.token)
         this.$router.push('/home')
       })
     },
@@ -66,23 +65,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.login_container{
+.login_container {
   background-color: #12497c;
   height: 100%;
+  // background: url("../assets/images/bg.jpg") no-repeat left/100%;
 }
-.login_box{
+.login_box {
   width: 450px;
   height: 300px;
   background-color: #fff;
   border-radius: 3px;
   position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
   left: 50%;
   top: 50%;
   // margin-left: -225px;
   // margin-top: -150px;
-  transform: translate(-50%,-50%);
-
-  .avatar_box{
+  transform: translate(-50%, -50%);
+  .avatar_box {
     height: 130px;
     width: 130px;
     border: 1px solid #eee;
@@ -91,10 +91,9 @@ export default {
     box-shadow: 0 0 10px #ddd;
     position: absolute;
     left: 50%;
-    transform: translate(-50%,-40%);
+    transform: translate(-50%, -40%);
     background-color: #fff;
-    
-    img{
+    img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -102,14 +101,14 @@ export default {
     }
   }
 }
-.login_form{
+.login_form {
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
 }
-.btns{
+.btns {
   display: flex;
   justify-content: center;
 }
